@@ -6,8 +6,8 @@ class DiarySummaryPage extends StatelessWidget {
 
   //final String selectedEmotion = '행복';
   final String emotionDescription = '좋은 일이 있었어'; // 이모지 설명
-  final String dateSummary = '2024.01.24'; // 날짜
-  final String chatSummary = '가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바'; // 채팅 요약본
+  final String dateSummary = '2024.02.25'; // 날짜
+  final String chatSummary = '오늘은 길고 피곤한 날이었지만, 시간이 빠르게 지나가는 것에 아쉬움을 느끼며, 나의 성장을 되돌아봤다☺️ 구글 솔루션 챌린지 프로젝트에 참여하며, 백엔드 개발자로서 새로운 도전과 경험을 쌓고 있다😚 어려움 속에서도 붕어빵과 같은 작은 행복을 찾으며, 긍정적인 에너지를 얻었다💪🏼 오늘 하루 동안 많은 일이 있었지만, 그 속에서 소중한 순간을 찾고, 내일을 향한 기대감을 갖게 되었다😎🥰💗'; // 채팅 요약본
 
   final String emojiImage;
   final String selectedEmotion;

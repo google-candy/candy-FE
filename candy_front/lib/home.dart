@@ -202,7 +202,7 @@ class HomePage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            
+
                             Positioned(
                               top:21,
                               child: Container(
@@ -238,4 +238,3 @@ class HomePage extends StatelessWidget {
 
   }
 }
-

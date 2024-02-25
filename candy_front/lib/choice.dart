@@ -104,124 +104,209 @@ class EmojiSelectionPageState extends State<EmojiSelectionPage> {
               physics: NeverScrollableScrollPhysics(),
 
               children: List.generate(displayedEmojis.length, (index) {
-                return ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: selectedEmojiIndex == index ? Colors.lightBlueAccent : AppColors.pointColor1,
-                    foregroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                return Material(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: selectedEmojiIndex == index ? Colors.orange : Colors.amber.shade100,
+                      foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      elevation: 5,
+                      padding: EdgeInsets.zero,
                     ),
-                    elevation: 5,
-                    padding: EdgeInsets.zero,
-                  ),
-
-                  onPressed: () => _selectEmoji(index),
-
-                  child: LayoutBuilder(
-                    builder: (context, constraints) => Stack(
-                      //alignment: Alignment.center,
-                      children: [
-                        // 이미지
-
-                        Align(
-                          alignment: Alignment(0.0, -0.3),
-                          child: Image.asset(
-                            displayedEmojis[index]['image'],
-                            height: 130, // 이미지 높이 조절
-                            width: 130, // 이미지 너비 조절
-                            fit: BoxFit.cover, // 이미지가 컨테이너를 꽉 채우도록 설정
+                  
+                    onPressed: () => _selectEmoji(index),
+                  
+                    child: LayoutBuilder(
+                      builder: (context, constraints) => Stack(
+                        //alignment: Alignment.center,
+                        children: [
+                          // 이미지
+                  
+                          Align(
+                            alignment: Alignment(0.0, -0.3),
+                            child: Image.asset(
+                              displayedEmojis[index]['image'],
+                              height: 130, // 이미지 높이 조절
+                              width: 130, // 이미지 너비 조절
+                              fit: BoxFit.cover, // 이미지가 컨테이너를 꽉 채우도록 설정
+                            ),
                           ),
-                        ),
-
-                        // 텍스트
-                        Positioned( // Align 위젯을 사용하여 텍스트 위치 조정
-                          top: constraints.maxHeight*0.77,
-                          left: constraints.maxWidth / 6, // 이미지를 가로축의 중앙에 배치하기 위해
-                          right: constraints.maxWidth / 6,
-
-                          child: Text(
-                            displayedEmojis[index]['emoji'],
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 25),
+                  
+                          // 텍스트
+                          Positioned( // Align 위젯을 사용하여 텍스트 위치 조정
+                            top: constraints.maxHeight*0.77,
+                            left: constraints.maxWidth / 6, // 이미지를 가로축의 중앙에 배치하기 위해
+                            right: constraints.maxWidth / 6,
+                  
+                            child: Text(
+                              displayedEmojis[index]['emoji'],
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 25),
+                            ),
                           ),
-                        ),
-
-                        // 물음표 아이콘
-                        Positioned( // 위치를 정확하게 지정할 수 있는 Positioned 위젯 사용
-                          top: 5, // 상단에서 5픽셀 떨어진 위치
-                          right: 5, // 우측에서 5픽셀 떨어진 위치
-                          child: IconButton(
-                            icon: Icon(Icons.question_mark),
-
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-
-                                  return Dialog(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20.0), // 모서리를 둥글게
-                                    ),
-
-                                    elevation: 0,
-                                    backgroundColor: Colors.transparent,
-                                    child: Container(
-                                      padding: EdgeInsets.all(20),
-                                      decoration: BoxDecoration(
-                                        color: AppColors.pointColor1, // 배경색 설정
-                                        borderRadius: BorderRadius.circular(20), // 모서리 둥글게
+                  
+                          // 물음표 아이콘
+                          Positioned( // 위치를 정확하게 지정할 수 있는 Positioned 위젯 사용
+                            top: 5, // 상단에서 5픽셀 떨어진 위치
+                            right: 5, // 우측에서 5픽셀 떨어진 위치
+                            child: IconButton(
+                              icon: Icon(Icons.question_mark),
+                  
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return Dialog(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20.0),
                                       ),
-
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min, // 컨텐츠 크기에 맞게 최소화
-                                        children: <Widget>[
-                                          Text(displayedEmojis[index]['emoji'],
-                                              style: TextStyle(fontSize: 30)
+                                      elevation: 0,
+                                      backgroundColor: Colors.transparent,
+                                      child: Stack(
+                                        children: [
+                                          Container(
+                                            height: 470,
+                                            width: 350,
+                                            padding: EdgeInsets.all(20),
+                                            decoration: BoxDecoration(
+                                              color: Colors.amber.shade100,
+                                              borderRadius: BorderRadius.circular(20),
+                                            ),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: <Widget>[
+                  
+                  
+                                                Text(displayedEmojis[index]['emoji'],
+                                                    style: TextStyle(fontSize: 30)
+                                                ),
+                  //Text(),
+                                                Text("( " + displayedEmojis[index]['english'] + ")",
+                                                  style: TextStyle(fontSize: 22, color:Colors.grey,),
+                                                ),
+                  //Text(),
+                                                SizedBox(height: 20),
+                  
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  mainAxisSize: MainAxisSize.max,
+                                                  children: <Widget>[
+                                                    Image.asset(
+                                                      displayedEmojis[index]['image'],
+                                                      height:135, width: 135,
+                                                      fit: BoxFit.contain,
+                                                    ), // 이미지 추가
+                  
+                                                    SizedBox(width: 20),
+                  
+                                                    Column(
+                                                      children: [
+                                                        Container(
+                                                          height: 40, width: 130,
+                                                          alignment: Alignment.center,
+                                                          decoration: BoxDecoration(
+                                                            color: Colors.white.withOpacity(0.5), // 컨테이너의 배경색을 투명하게 설정
+                                                            borderRadius: BorderRadius.circular(15),
+                                                          ),
+                                                          child: Text(" # 행복한 ",
+                                                              textAlign: TextAlign.center,
+                                                              style:(
+                                                                  TextStyle(
+                                                                    fontSize: 26,
+                                                                  )
+                                                              )
+                                                          ),
+                                                        ),
+                                                        SizedBox(height: 5,),
+                                                        Container(
+                                                          height: 40, width: 130,
+                                                          alignment: Alignment.center,
+                                                          decoration: BoxDecoration(
+                                                            color: Colors.white.withOpacity(0.5), // 컨테이너의 배경색을 투명하게 설정
+                                                            borderRadius: BorderRadius.circular(15),
+                                                          ),
+                                                          child: Text(" # 즐거운 ",
+                                                              textAlign: TextAlign.center,
+                                                              style:(
+                                                                  TextStyle(
+                                                                    fontSize: 26,
+                                                                  )
+                                                              )
+                                                          ),
+                                                        ),
+                                                        SizedBox(height: 5,),
+                                                        Container(
+                                                          height: 40, width: 130,
+                                                          alignment: Alignment.center,
+                                                          decoration: BoxDecoration(
+                                                            color: Colors.white.withOpacity(0.5), // 컨테이너의 배경색을 투명하게 설정
+                                                            borderRadius: BorderRadius.circular(15),
+                                                          ),
+                                                          child: Text(" # 산뜻한 ",
+                                                              textAlign: TextAlign.center,
+                                                              style:(
+                                                                  TextStyle(
+                                                                    fontSize: 26,
+                                                                  )
+                                                              )
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                  
+                                                SizedBox(height: 25),
+                  
+                                                Container(
+                                                  height: 160, width: 300,
+                                                  padding: EdgeInsets.all(5),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius: BorderRadius.circular(15),
+                                                  ),
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.all(8.0),
+                                                    child: Text("\"기쁘다\"는 느낌이나 상태를 나타내는 한국어 단어로, 마음이 행복하고 즐거운 상태를 의미해요. 어떤 좋은 일이 생겼거나, 만족스러운 결과를 얻었을 때, 또는 사랑하는 사람들과 함께 있을 때 이런 기분을 느껴요.",
+                                                        style:(
+                                                            TextStyle(
+                                                              fontSize: 18,
+                                                            )
+                                                        )
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                          //Text(),
-                                          Text("( " + displayedEmojis[index]['english'] + ")",
-                                              style: TextStyle(fontSize: 22, color:Colors.grey,),
-                                          ),
-                                          //Text(),
-                                          SizedBox(height: 10),
-
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: <Widget>[
-                                              Image.asset(displayedEmojis[index]['image'],), // 이미지 추가
-                                              Text("#행복한\n#즐거운\n#산뜻한", textAlign: TextAlign.center),
-                                            ],
-                                          ),
-
-                                          SizedBox(height: 10),
-
-                                          // Container(
-                                          //   decoration:
-                                          // ),
-
-                                          ElevatedButton(
-                                            onPressed: () {
-                                              Navigator.of(context).pop(); // 다이얼로그 닫기
-                                            },
-                                            child: Text("닫기"),
+                                          Positioned(
+                                            right: 4,
+                                            top: 4,
+                                            child: IconButton(
+                                              icon: Icon(Icons.close, size: 24),
+                                              onPressed: () {
+                                                Navigator.of(context).pop(); // 다이얼로그 닫기
+                                              },
+                                            ),
                                           ),
                                         ],
                                       ),
-                                    ),
-                                  );
-
-                                },
-                              );
-                            },
-
-                          )
-
-                        ),
-
-                      ],
+                                    );
+                                  },
+                                );
+                              },
+                  
+                            )
+                  
+                          ),
+                  
+                        ],
+                      ),
                     ),
+                  
                   ),
-
                 );
               }),
             ),
